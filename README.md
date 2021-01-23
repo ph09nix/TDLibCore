@@ -29,6 +29,9 @@ OnVerificationCodeNeeded | Event will be runing whenever authorization state is 
 OnVerificationPasswordNeeded | Event will be runing whenever authorization state is equal to verification password needed
 OnReady | Event will be runing when connection is successful
 
+## How to use ?
+Check & Build example folder
+
 ### Donation : 18eHqWzdCFMs8pNXiHAwvpDMHmToxFLhMP (BTC)
 #### support / suggestion = ph09nixom@gmail.com - t.me/ph09nix
 #### Leave a STAR if you found this usefull :)
