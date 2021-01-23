@@ -29,6 +29,7 @@ OnVerificationCodeNeeded | Event will be runing whenever authorization state is 
 OnVerificationPasswordNeeded | Event will be runing whenever authorization state is equal to verification password needed
 OnReady | Event will be runing when connection is successful
 
+you can also add custom events using mainresponsehandlers object ( check example, in example custom event added for UpdateNewMessage )
 ## How to use ?
 Check & Build example folder
 
