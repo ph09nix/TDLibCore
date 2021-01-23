@@ -75,6 +75,11 @@ namespace TDLibCore_Example
             Console.WriteLine("ready");
             Console.WriteLine("Gathering chatslist ...");
             List<tdapi.Chat> chatslist = await core.GetMainChatList();
+			core.mainresponsehandlers.Add(new tdapi.UpdateNewMessage().GetType(), async (a, b) =>
+            {
+                TDLibCoreEventArgs args = b;
+                Console.WriteLine(args.additionalobject);
+            });
             if (chatslist.Count > 0)
             {
                 Console.WriteLine(chatslist.Count);
