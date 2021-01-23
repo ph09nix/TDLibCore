@@ -36,96 +36,96 @@ namespace TDLibCore
             #region handle UpdateAuthorizationState,UpdateOption,UpdateConnectionState
 
             mainresponsehandlers.Add(new tdapi.UpdateAuthorizationState().GetType(), (a, b) =>
-             {
-                 tdapi.UpdateAuthorizationState ustate = b.additionalobject as tdapi.UpdateAuthorizationState;
-                 tdapi.AuthorizationState state = ustate.AuthorizationState;
-                 if (state is tdapi.AuthorizationStateClosed)
-                 {
-                     authorizationstate = enums.AuhtorizationState.Closed;
-                 }
-                 else if (state is tdapi.AuthorizationStateClosing)
-                 {
-                     authorizationstate = enums.AuhtorizationState.Closing;
-                 }
-                 else if (state is tdapi.AuthorizationStateLoggingOut)
-                 {
-                     authorizationstate = enums.AuhtorizationState.LoggingOut;
-                 }
-                 else if (state is tdapi.AuthorizationStateReady)
-                 {
-                     b.core.OnReadyAction(new TDLibCoreEventArgs()
-                     {
-                         core = b.core
-                     });
-                     authorizationstate = enums.AuhtorizationState.Ready;
-                 }
-                 else if (state is tdapi.AuthorizationStateWaitEncryptionKey)
-                 {
-                     client.Send(new tdapi.CheckDatabaseEncryptionKey(), null);
-                     if (b.core.hpcore.debuglevel == enums.DebugLevel.Full || b.core.hpcore.debuglevel == enums.DebugLevel.Normal)
-                     {
-                         string[] split = b.core.hpcore.debugproxy.Split(':');
-                         string proxyip = split[0];
-                         int proxyport = int.Parse(split[1]);
-                         client.Send(new tdapi.AddProxy(proxyip, proxyport, true, new tdapi.ProxyTypeHttp()), null);
-                     }
-                     else
-                     {
-                         client.Send(new tdapi.DisableProxy(), null);
-                     }
-                     authorizationstate = enums.AuhtorizationState.BackgroundActions;
-                 }
-                 else if (state is tdapi.AuthorizationStateWaitOtherDeviceConfirmation)
-                 {
-                     authorizationstate = enums.AuhtorizationState.BackgroundActions;
-                 }
-                 else if (state is tdapi.AuthorizationStateWaitCode)
-                 {
-                     authorizationstate = enums.AuhtorizationState.WaitingForVerificationCode;
-                     b.core.OnVerificationCodeNeededAction(new TDLibCoreEventArgs()
-                     {
-                         core = b.core
-                     });
-                 }
-                 else if (state is tdapi.AuthorizationStateWaitPassword)
-                 {
-                     authorizationstate = enums.AuhtorizationState.WaitingForVerificationPassword;
-                     b.core.OnVerificationPasswordNeededAction(new TDLibCoreEventArgs()
-                     {
-                         core = b.core
-                     });
-                 }
-                 else if (state is tdapi.AuthorizationStateWaitPhoneNumber)
-                 {
-                     client.Send(new tdapi.SetAuthenticationPhoneNumber(b.core.phonenumber, new tdapi.PhoneNumberAuthenticationSettings()
-                     {
-                         AllowFlashCall = true,
-                         AllowSmsRetrieverApi = true
-                     }), null);
-                     authorizationstate = enums.AuhtorizationState.BackgroundActions;
-                 }
-                 else if (state is tdapi.AuthorizationStateWaitTdlibParameters)
-                 {
-                     client.Send(new tdapi.SetTdlibParameters(new tdapi.TdlibParameters()
-                     {
-                         ApiHash = b.core.hpcore.APIHASH,
-                         ApiId = b.core.hpcore.APIID,
-                         ApplicationVersion = "1.0.0",
-                         DeviceModel = "Desktop",
-                         EnableStorageOptimizer = true,
-                         SystemLanguageCode = "en",
-                         UseSecretChats = true,
-                         UseMessageDatabase = true,
-                         UseChatInfoDatabase = true,
-                         DatabaseDirectory = $"TDLibCoreData-{   b.core.phonenumber.Replace("+", "0")}"
-                     }), null);
-                     authorizationstate = enums.AuhtorizationState.BackgroundActions;
-                 }
-                 else
-                 {
-                     b.core.authorizationstate = enums.AuhtorizationState.InvalidData;
-                 }
-             });
+            {
+                tdapi.UpdateAuthorizationState ustate = b.additionalobject as tdapi.UpdateAuthorizationState;
+                tdapi.AuthorizationState state = ustate.AuthorizationState;
+                if (state is tdapi.AuthorizationStateClosed)
+                {
+                    authorizationstate = enums.AuhtorizationState.Closed;
+                }
+                else if (state is tdapi.AuthorizationStateClosing)
+                {
+                    authorizationstate = enums.AuhtorizationState.Closing;
+                }
+                else if (state is tdapi.AuthorizationStateLoggingOut)
+                {
+                    authorizationstate = enums.AuhtorizationState.LoggingOut;
+                }
+                else if (state is tdapi.AuthorizationStateReady)
+                {
+                    b.core.OnReadyAction(new TDLibCoreEventArgs()
+                    {
+                        core = b.core
+                    });
+                    authorizationstate = enums.AuhtorizationState.Ready;
+                }
+                else if (state is tdapi.AuthorizationStateWaitEncryptionKey)
+                {
+                    client.Send(new tdapi.CheckDatabaseEncryptionKey(), null);
+                    if (b.core.hpcore.debuglevel == enums.DebugLevel.Full || b.core.hpcore.debuglevel == enums.DebugLevel.Normal)
+                    {
+                        string[] split = b.core.hpcore.debugproxy.Split(':');
+                        string proxyip = split[0];
+                        int proxyport = int.Parse(split[1]);
+                        client.Send(new tdapi.AddProxy(proxyip, proxyport, true, new tdapi.ProxyTypeHttp()), null);
+                    }
+                    else
+                    {
+                        client.Send(new tdapi.DisableProxy(), null);
+                    }
+                    authorizationstate = enums.AuhtorizationState.BackgroundActions;
+                }
+                else if (state is tdapi.AuthorizationStateWaitOtherDeviceConfirmation)
+                {
+                    authorizationstate = enums.AuhtorizationState.BackgroundActions;
+                }
+                else if (state is tdapi.AuthorizationStateWaitCode)
+                {
+                    authorizationstate = enums.AuhtorizationState.WaitingForVerificationCode;
+                    b.core.OnVerificationCodeNeededAction(new TDLibCoreEventArgs()
+                    {
+                        core = b.core
+                    });
+                }
+                else if (state is tdapi.AuthorizationStateWaitPassword)
+                {
+                    authorizationstate = enums.AuhtorizationState.WaitingForVerificationPassword;
+                    b.core.OnVerificationPasswordNeededAction(new TDLibCoreEventArgs()
+                    {
+                        core = b.core
+                    });
+                }
+                else if (state is tdapi.AuthorizationStateWaitPhoneNumber)
+                {
+                    client.Send(new tdapi.SetAuthenticationPhoneNumber(b.core.phonenumber, new tdapi.PhoneNumberAuthenticationSettings()
+                    {
+                        AllowFlashCall = true,
+                        AllowSmsRetrieverApi = true
+                    }), null);
+                    authorizationstate = enums.AuhtorizationState.BackgroundActions;
+                }
+                else if (state is tdapi.AuthorizationStateWaitTdlibParameters)
+                {
+                    client.Send(new tdapi.SetTdlibParameters(new tdapi.TdlibParameters()
+                    {
+                        ApiHash = b.core.hpcore.APIHASH,
+                        ApiId = b.core.hpcore.APIID,
+                        ApplicationVersion = "1.0.0",
+                        DeviceModel = "Desktop",
+                        EnableStorageOptimizer = true,
+                        SystemLanguageCode = "en",
+                        UseSecretChats = true,
+                        UseMessageDatabase = true,
+                        UseChatInfoDatabase = true,
+                        DatabaseDirectory = $"TDLibCoreData-{   b.core.phonenumber.Replace("+", "0")}"
+                    }), null);
+                    authorizationstate = enums.AuhtorizationState.BackgroundActions;
+                }
+                else
+                {
+                    b.core.authorizationstate = enums.AuhtorizationState.InvalidData;
+                }
+            });
             mainresponsehandlers.Add(new tdapi.UpdateConnectionState().GetType(), (a, b) =>
             {
                 tdapi.UpdateConnectionState uct = b.additionalobject as tdapi.UpdateConnectionState;
@@ -163,6 +163,9 @@ namespace TDLibCore
             #endregion handle UpdateAuthorizationState,UpdateOption,UpdateConnectionState
         }
 
+        /// <summary>
+        /// Initializes TDLibCore instance and run new telegram client
+        /// </summary>
         [Obsolete]
         public void initializeclient()
         {
@@ -190,6 +193,11 @@ namespace TDLibCore
             hpcore.addlog($"{phonenumber} client initialization successed");
         }
 
+        /// <summary>
+        /// Sends input data for authentication purpos if authorization status matches
+        /// </summary>
+        /// <param name="input">this can be verification password or code</param>
+        /// <returns>request response</returns>
         public async Task<(enums.Response response, object responseobj)> Authenticate(string input)
         {
             enums.Response res = enums.Response.Processing;
@@ -231,6 +239,9 @@ namespace TDLibCore
             return (res, data);
         }
 
+        /// <summary>
+        /// current object disposal
+        /// </summary>
         public void Dispose()
         {
             GC.Collect();
@@ -239,6 +250,10 @@ namespace TDLibCore
 
         #region easy-to-use functions
 
+        /// <summary>
+        /// Get authentication phonenumber main chats
+        /// </summary>
+        /// <returns>A list which contains tdpi.Chat instnaces</returns>
         public async Task<List<tdapi.Chat>> GetMainChatList()
         {
             List<tdapi.Chat> res = new List<tdapi.Chat>();
@@ -294,6 +309,11 @@ namespace TDLibCore
             return mainchatslist;
         }
 
+        /// <summary>
+        /// returns a specified super group members if possible
+        /// </summary>
+        /// <param name="supergroupid">target super group identifier</param>
+        /// <returns>A list which contains tdpi.User instnaces</returns>
         public async Task<List<tdapi.User>> GetSuperGroupUsers(long supergroupid)
         {
             hpcore.addlog("[GetSuperGroupUsers] - gathering " + supergroupid);
@@ -381,6 +401,12 @@ namespace TDLibCore
                     .ToList();
         }
 
+        /// <summary>
+        /// returns a specified super group members if possible
+        /// </summary>
+        /// <param name="groupidentifier">target super group search query</param>
+        /// <param name="istitle">true if query contains in target group title</param>
+        /// <returns>A list which contains tdpi.User instnaces</returns>
         public async Task<List<tdapi.User>> GetSuperGroupUsers(string groupidentifier, bool istitle = false)
         {
             List<tdapi.User> res = new List<tdapi.User>();
@@ -416,6 +442,12 @@ namespace TDLibCore
             return res;
         }
 
+        /// <summary>
+        /// asynchronously run a tdapi.Function
+        /// </summary>
+        /// <param name="func">function you want to run asynchronously</param>
+        /// <param name="expectedtype">the type which you expect your function response receives</param>
+        /// <returns>A Responseobject contains your task information</returns>
         public async Task<Responseobject> ExecuteCommandAsync(tdapi.Function func, tdapi.BaseObject expectedtype = null)
         {
             Responseobject res = new Responseobject();
@@ -449,6 +481,12 @@ namespace TDLibCore
             return res;
         }
 
+        /// <summary>
+        /// Adds a user in specified super group
+        /// </summary>
+        /// <param name="user">target user tdapi.User instnace</param>
+        /// <param name="target">target group tdapi.Chat instnace</param>
+        /// <param name="addall">if true, user will be added even if its blocked, or last seen long time ago</param>
         public async Task<(enums.Response response, object obj)> AddChatMember(tdapi.User user, tdapi.Chat target, bool addall = false)
         {
             enums.Response res = new enums.Response();
