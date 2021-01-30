@@ -50,11 +50,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
-    <Reference Include="TDLibCore">
-      <HintPath>..\TDLibCore\bin\Debug\TDLibCore.dll</HintPath>
-    </Reference>
     <Reference Include="Telegram.Td">
-      <HintPath>..\TDLibCore\Dependancies\Telegram.Td.dll</HintPath>
+      <HintPath>..\Dependancies\Telegram.Td.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +60,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\TDLibCore.csproj">
+      <Project>{659294bd-ff6e-4598-8712-2747e8d8b454}</Project>
+      <Name>TDLibCore</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

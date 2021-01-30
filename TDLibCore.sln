@@ -5,27 +5,7 @@ VisualStudioVersion = 16.0.30804.86
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDLibCore", "TDLibCore.csproj", "{659294BD-FF6E-4598-8712-2747E8D8B454}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDLibCore Example", "..\TDLibCore Example\TDLibCore Example.csproj", "{21F2410D-E809-4C3A-A631-5E326802AEE1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{659294BD-FF6E-4598-8712-2747E8D8B454} = {659294BD-FF6E-4598-8712-2747E8D8B454}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group Members Copier by Ph09niX", "..\Group Members Copier by Ph09niX\Group Members Copier by Ph09niX.csproj", "{71152945-1A19-4469-BD4B-22D631A2F019}"
-	ProjectSection(ProjectDependencies) = postProject
-		{659294BD-FF6E-4598-8712-2747E8D8B454} = {659294BD-FF6E-4598-8712-2747E8D8B454}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSDark Telegram Manager", "..\HSDark Telegram Manager\HSDark Telegram Manager.csproj", "{97C5A92D-D336-4B8E-B722-6097610E1B9F}"
-	ProjectSection(ProjectDependencies) = postProject
-		{659294BD-FF6E-4598-8712-2747E8D8B454} = {659294BD-FF6E-4598-8712-2747E8D8B454}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HSDark Bulk Sender", "..\HSDark Bulk Sender\HSDark Bulk Sender.csproj", "{69EA424C-0394-4CDD-B27B-32134E2905E3}"
-	ProjectSection(ProjectDependencies) = postProject
-		{659294BD-FF6E-4598-8712-2747E8D8B454} = {659294BD-FF6E-4598-8712-2747E8D8B454}
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDLibCoreSTD", "..\TDLibCoreSTD\TDLibCoreSTD.csproj", "{C6271EB8-8455-4BA1-825E-5FC1B44AF2F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TDLibCore Example", "Example\TDLibCore Example.csproj", "{21F2410D-E809-4C3A-A631-5E326802AEE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,22 +21,6 @@ Global
 		{21F2410D-E809-4C3A-A631-5E326802AEE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21F2410D-E809-4C3A-A631-5E326802AEE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21F2410D-E809-4C3A-A631-5E326802AEE1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{71152945-1A19-4469-BD4B-22D631A2F019}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{71152945-1A19-4469-BD4B-22D631A2F019}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{71152945-1A19-4469-BD4B-22D631A2F019}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{71152945-1A19-4469-BD4B-22D631A2F019}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97C5A92D-D336-4B8E-B722-6097610E1B9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97C5A92D-D336-4B8E-B722-6097610E1B9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97C5A92D-D336-4B8E-B722-6097610E1B9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97C5A92D-D336-4B8E-B722-6097610E1B9F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{69EA424C-0394-4CDD-B27B-32134E2905E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{69EA424C-0394-4CDD-B27B-32134E2905E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{69EA424C-0394-4CDD-B27B-32134E2905E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{69EA424C-0394-4CDD-B27B-32134E2905E3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6271EB8-8455-4BA1-825E-5FC1B44AF2F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6271EB8-8455-4BA1-825E-5FC1B44AF2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6271EB8-8455-4BA1-825E-5FC1B44AF2F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6271EB8-8455-4BA1-825E-5FC1B44AF2F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

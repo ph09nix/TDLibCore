@@ -1,0 +1,12 @@
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\TDLibCore Example.exe.config
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\TDLibCore Example.exe
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\TDLibCore Example.pdb
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\Newtonsoft.Json.dll
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\TDLibCore.dll
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\Telegram.Td.dll
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\bin\Debug\TDLibCore.pdb
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\obj\Debug\TDLibCore Example.csprojAssemblyReference.cache
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\obj\Debug\TDLibCore Example.csproj.CoreCompileInputs.cache
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\obj\Debug\TDLibCore Example.csproj.CopyComplete
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\obj\Debug\TDLibCore Example.exe
+C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\Example\obj\Debug\TDLibCore Example.pdb
