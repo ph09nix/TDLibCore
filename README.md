@@ -12,6 +12,8 @@ you need following dll files to be able to work with this library :
 - zlib1.dll
 - libssl-1_1-xARC.dll
 
+there is compiled files in DEPENDANCIES folder you can use, or you can compile from :
+https://github.com/tdlib/td
 ## Functions
 Name | Description
 -------- | -----------
