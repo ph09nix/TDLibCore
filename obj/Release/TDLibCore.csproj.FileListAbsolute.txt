@@ -1,8 +1,0 @@
-C:\Users\ph09nix\source\repos\TDLibCore\bin\Release\TDLibCore.dll
-C:\Users\ph09nix\source\repos\TDLibCore\bin\Release\TDLibCore.pdb
-C:\Users\ph09nix\source\repos\TDLibCore\bin\Release\Telegram.Td.dll
-C:\Users\ph09nix\source\repos\TDLibCore\obj\Release\TDLibCore.csproj.CoreCompileInputs.cache
-C:\Users\ph09nix\source\repos\TDLibCore\obj\Release\TDLibCore.csproj.CopyComplete
-C:\Users\ph09nix\source\repos\TDLibCore\obj\Release\TDLibCore.dll
-C:\Users\ph09nix\source\repos\TDLibCore\obj\Release\TDLibCore.pdb
-C:\Users\ph09nix\source\repos\TDLibCore\obj\Release\TDLibCore.csprojAssemblyReference.cache

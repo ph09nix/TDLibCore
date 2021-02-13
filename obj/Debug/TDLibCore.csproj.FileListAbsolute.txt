@@ -1,7 +1,0 @@
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\bin\Debug\TDLibCore.dll
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\bin\Debug\TDLibCore.pdb
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\bin\Debug\Telegram.Td.dll
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\obj\Debug\TDLibCore.csproj.CoreCompileInputs.cache
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\obj\Debug\TDLibCore.csproj.CopyComplete
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\obj\Debug\TDLibCore.dll
-C:\Users\ph09nix\Documents\GitHub\OtherUsers\TDLibCore\obj\Debug\TDLibCore.pdb
