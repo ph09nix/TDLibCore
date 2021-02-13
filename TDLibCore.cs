@@ -20,7 +20,7 @@ namespace TDLibCore
         private Dictionary<string, Action<tdapi.BaseObject, Reshandler>> commands { get; set; }
         private object lockerobject { get; set; }
         private List<tdapi.Chat> mainchatslist { get; set; }
-        public Dictionary<Type, EventHandler<TDLibCoreEventArgs>> mainresponsehandlers { get; set; }
+        public Dictionary<Type, Action<TDLibCoreEventArgs>> mainresponsehandlers { get; set; }
 
         #endregion properties
 
@@ -29,13 +29,13 @@ namespace TDLibCore
             this.hpcore = hp;
             lockerobject = new object();
             commands = new Dictionary<string, Action<tdapi.BaseObject, Reshandler>>();
-            mainresponsehandlers = new Dictionary<Type, EventHandler<TDLibCoreEventArgs>>();
+            mainresponsehandlers = new Dictionary<Type, Action<TDLibCoreEventArgs>>();
             this.authorizationstate = enums.AuhtorizationState.BackgroundActions;
             this.connectionstate = enums.ConnectionState.Updating;
 
             #region handle UpdateAuthorizationState,UpdateOption,UpdateConnectionState
 
-            mainresponsehandlers.Add(new tdapi.UpdateAuthorizationState().GetType(), (a, b) =>
+            mainresponsehandlers.Add(new tdapi.UpdateAuthorizationState().GetType(), (b) =>
             {
                 tdapi.UpdateAuthorizationState ustate = b.additionalobject as tdapi.UpdateAuthorizationState;
                 tdapi.AuthorizationState state = ustate.AuthorizationState;
@@ -62,16 +62,18 @@ namespace TDLibCore
                 else if (state is tdapi.AuthorizationStateWaitEncryptionKey)
                 {
                     client.Send(new tdapi.CheckDatabaseEncryptionKey(), null);
-                    if (b.core.hpcore.debuglevel == enums.DebugLevel.Full || b.core.hpcore.debuglevel == enums.DebugLevel.Normal)
+                    if (b.core.hpcore.useproxy is true)
                     {
                         string[] split = b.core.hpcore.debugproxy.Split(':');
                         string proxyip = split[0];
                         int proxyport = int.Parse(split[1]);
                         client.Send(new tdapi.AddProxy(proxyip, proxyport, true, new tdapi.ProxyTypeHttp()), null);
+                        hpcore.addlog("[TDLibCore][proxystate] - enabled");
                     }
                     else
                     {
                         client.Send(new tdapi.DisableProxy(), null);
+                        hpcore.addlog("[TDLibCore][proxystate] - disabled");
                     }
                     authorizationstate = enums.AuhtorizationState.BackgroundActions;
                 }
@@ -126,7 +128,7 @@ namespace TDLibCore
                     b.core.authorizationstate = enums.AuhtorizationState.InvalidData;
                 }
             });
-            mainresponsehandlers.Add(new tdapi.UpdateConnectionState().GetType(), (a, b) =>
+            mainresponsehandlers.Add(new tdapi.UpdateConnectionState().GetType(), (b) =>
             {
                 tdapi.UpdateConnectionState uct = b.additionalobject as tdapi.UpdateConnectionState;
                 if (uct.State is tdapi.ConnectionStateConnecting)
@@ -154,7 +156,7 @@ namespace TDLibCore
                     b.core.connectionstate = enums.ConnectionState.InvalidData;
                 }
             });
-            mainresponsehandlers.Add(new tdapi.UpdateOption().GetType(), (a, b) =>
+            mainresponsehandlers.Add(new tdapi.UpdateOption().GetType(), (b) =>
             {
                 tdapi.UpdateOption upn = b.additionalobject as tdapi.UpdateOption;
                 client.Send(new tdapi.SetOption(upn.Name, upn.Value), null);
@@ -169,10 +171,11 @@ namespace TDLibCore
         [Obsolete]
         public void initializeclient()
         {
+            string lgfilename = $"{phonenumber}-log.txt";
+
             switch (hpcore.debuglevel)
             {
                 case enums.DebugLevel.Full:
-                    string lgfilename = $"{phonenumber}-log.txt";
                     if (System.IO.File.Exists(lgfilename))
                         System.IO.File.Delete(lgfilename);
                     tdlib.Log.SetFilePath(lgfilename);
@@ -506,19 +509,10 @@ namespace TDLibCore
                     Responseobject SearchPublicChatresponse = await ExecuteCommandAsync(new tdapi.SearchPublicChat(user.Username), new tdapi.Chat());
                     if (SearchPublicChatresponse.response == enums.Response.Success)
                     {
-                        Responseobject CreatePrivateChatresposnse = await ExecuteCommandAsync(new tdapi.CreatePrivateChat(user.Id, false), new tdapi.Chat());
-                        if (CreatePrivateChatresposnse.response == enums.Response.Success)
-                        {
-                            Responseobject AddChatMemberresponse = await ExecuteCommandAsync(new tdapi.AddChatMember(target.Id
-                                , user.Id, 100), new tdapi.Ok());
-                            res = AddChatMemberresponse.response;
-                            obj = AddChatMemberresponse.responseobject;
-                        }
-                        else
-                        {
-                            res = CreatePrivateChatresposnse.response;
-                            obj = CreatePrivateChatresposnse.responseobject;
-                        }
+                        Responseobject AddChatMemberresponse = await ExecuteCommandAsync(new tdapi.AddChatMember(target.Id
+                                       , user.Id, 100), new tdapi.Ok());
+                        res = AddChatMemberresponse.response;
+                        obj = AddChatMemberresponse.responseobject;
                     }
                     else
                     {
@@ -541,19 +535,10 @@ namespace TDLibCore
                         Responseobject SearchPublicChatresponse = await ExecuteCommandAsync(new tdapi.SearchPublicChat(user.Username), new tdapi.Chat());
                         if (SearchPublicChatresponse.response == enums.Response.Success)
                         {
-                            Responseobject CreatePrivateChatresposnse = await ExecuteCommandAsync(new tdapi.CreatePrivateChat(user.Id, false), new tdapi.Chat());
-                            if (CreatePrivateChatresposnse.response == enums.Response.Success)
-                            {
-                                Responseobject AddChatMemberresponse = await ExecuteCommandAsync(new tdapi.AddChatMember(target.Id
-                                    , user.Id, 100), new tdapi.Ok());
-                                res = AddChatMemberresponse.response;
-                                obj = AddChatMemberresponse.responseobject;
-                            }
-                            else
-                            {
-                                res = CreatePrivateChatresposnse.response;
-                                obj = CreatePrivateChatresposnse.responseobject;
-                            }
+                            await Task.Delay(2000);
+                            Responseobject AddChatMemberresponse = await ExecuteCommandAsync(new tdapi.AddChatMember(target.Id, user.Id, 0), new tdapi.Ok());
+                            res = AddChatMemberresponse.response;
+                            obj = AddChatMemberresponse.responseobject;
                         }
                         else
                         {

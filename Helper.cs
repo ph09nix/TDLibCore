@@ -12,13 +12,15 @@ namespace TDLibCore
         public string APIHASH { get; set; }
         public string debugproxy { get; set; }
         public enums.DebugLevel debuglevel { get; set; }
+        public bool useproxy { get; set; }
         public int timeout { get; set; }
 
         public Helper()
         {
             debugproxy = "127.0.0.1:7890";
+            useproxy = false;
             timeout = 25000;
-            debuglevel = enums.DebugLevel.LogOnly;
+            debuglevel = enums.DebugLevel.Full;
         }
 
         public void addlog(string data)

@@ -43,10 +43,10 @@ namespace TDLibCore
             {
                 if (core.mainresponsehandlers.ContainsKey(@object.GetType()))
                 {
-                    EventHandler<TDLibCoreEventArgs> handler = core.mainresponsehandlers[@object.GetType()];
+                    Action<TDLibCoreEventArgs> handler = core.mainresponsehandlers[@object.GetType()];
                     if (handler != null)
                     {
-                        handler(null, new TDLibCoreEventArgs()
+                        handler(new TDLibCoreEventArgs()
                         {
                             core = core,
                             additionalobject = @object

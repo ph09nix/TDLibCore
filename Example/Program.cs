@@ -19,13 +19,14 @@ namespace TDLibCore_Example
         {
             TDLibCore.Helper hpcore = new Helper()
             {
-                debuglevel = TDLibCore.enums.DebugLevel.Normal,
-                APIHASH = "eb36555066d17d1ae52f95ee8d62d81a",
-                APIID = 191031,
+                debuglevel = TDLibCore.enums.DebugLevel.Full,
+                useproxy = false,
+                APIHASH = "",
+                APIID = 0,
             };
             TDLibCore.TDLibCore core = new TDLibCore.TDLibCore(hpcore)
             {
-                phonenumber = "+989165203611",
+                phonenumber = "+98....",
             };
             core.OnVerificationCodeNeeded += Core_OnVerificationCodeNeeded;
             core.OnVerificationPasswordNeeded += Core_OnVerificationPasswordNeededAsync;
@@ -74,20 +75,28 @@ namespace TDLibCore_Example
             TDLibCore.TDLibCore core = e.core;
             Console.WriteLine("ready");
             Console.WriteLine("Gathering chatslist ...");
-            List<tdapi.Chat> chatslist = await core.GetMainChatList();
-			core.mainresponsehandlers.Add(new tdapi.UpdateNewMessage().GetType(), async (a, b) =>
+            Responseobject me = await core.ExecuteCommandAsync(new tdapi.GetMe(), new tdapi.User());
+            if (me.response == TDLibCore.enums.Response.Success)
             {
-                TDLibCoreEventArgs args = b;
-                Console.WriteLine(args.additionalobject);
-            });
-            if (chatslist.Count > 0)
-            {
-                Console.WriteLine(chatslist.Count);
+                List<tdapi.Chat> chatslist = await core.GetMainChatList();
+                core.mainresponsehandlers.Add(new tdapi.UpdateNewMessage().GetType(), (a) =>
+                {
+                    Console.WriteLine(a.additionalobject);
+                });
+                if (chatslist.Count > 0)
+                {
+                    Console.WriteLine(chatslist.Count);
+                }
+                else
+                {
+                    Console.WriteLine("you have no chats in your main chatlist");
+                }
             }
             else
             {
-                Console.WriteLine("you have no chats in your main chatlist");
+                Console.WriteLine("Gathering me failed");
             }
+
         }
     }
 }

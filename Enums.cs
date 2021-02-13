@@ -40,8 +40,6 @@ namespace TDLibCore.enums
     public enum DebugLevel
     {
         Full,
-        Normal,
-        LogOnly,
-        None
+        None,
     }
 }
