@@ -4,12 +4,6 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
 
-# html page
-[Ff]ront/
-
-#backend script
-[Bb]ackend/
-
 # User-specific files
 *.rsuser
 *.suo
