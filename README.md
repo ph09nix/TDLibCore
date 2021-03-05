@@ -37,7 +37,7 @@ you can also add custom events using mainresponsehandlers object ( check example
 
 ## How to use ?
 you can build this project or easily use following nuget command :
-#### Install-Package TDLibCore -Version 1.0.0
+#### Install-Package TDLibCore -Version 1.2.0
 Check & Build example folder
 
 
