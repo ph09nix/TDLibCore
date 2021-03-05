@@ -1,2 +1,0 @@
-C:\Users\ph09nix\source\repos\TDLibCore Example\obj\Release\TDLibCore Example.csprojAssemblyReference.cache
-C:\Users\ph09nix\source\repos\TDLibCore Example\obj\Release\TDLibCore Example.csproj.CoreCompileInputs.cache
