@@ -41,7 +41,7 @@ namespace TDLibCore
             }
             else
             {
-                if (core.mainresponsehandlers.ContainsKey(@object.GetType()))
+                if (this.core.mainresponsehandlers.ContainsKey(@object.GetType()))
                 {
                     Action<TDLibCoreEventArgs> handler = core.mainresponsehandlers[@object.GetType()];
                     if (handler != null)
