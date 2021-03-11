@@ -431,7 +431,7 @@ namespace TDLibCore
             }
             else
             {
-                Responseobject search = await ExecuteCommandAsync(new tdapi.SearchPublicChat(groupidentifier));
+                Responseobject search = await ExecuteCommandAsync(new tdapi.SearchPublicChat(groupidentifier), new tdapi.Chat());
                 if (search.response == enums.Response.Success)
                 {
                     tdapi.Chat target = search.responseobject as tdapi.Chat;
